@@ -1,0 +1,37 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: mini-api-alerts
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+  - name: mini-api
+    rules:
+    - alert: HighErrorRate
+      expr: rate(http_requests_total{job="mini-api-svc", status="4xx"}[1m]) > 0.01
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High error rate on mini-api"
+        description: "mini-api is returning 4xx errors above threshold"
+
+    - alert: HighLatency
+      expr: histogram_quantile(0.99, rate(http_request_duration_seconds_bucket{job="mini-api-svc"}[1m])) > 0.5
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High latency on mini-api"
+        description: "mini-api p99 latency is above 500ms"
+
+    - alert: PodDown
+      expr: up{job="mini-api-svc"} == 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "mini-api pod is down"
+        description: "A mini-api pod has been unreachable for more than 1 minute"
