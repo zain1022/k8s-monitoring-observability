@@ -139,7 +139,7 @@ After applying the ServiceMonitor, Prometheus automatically discovers and scrape
 
 Navigate to **Status → Targets** and filter by `mini-api` to verify both pods show **UP**.
 
-![Prometheus Targets](docs/screenshots/prometheus-targets.png)
+![Prometheus Targets](docs/screenshots/prometheus_targets.png)
 
 ---
 
