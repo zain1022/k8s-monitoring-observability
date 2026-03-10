@@ -178,7 +178,7 @@ Three production-style alert rules are configured via PrometheusRule:
 - **Condition:** Any mini-api pod unreachable for more than 1 minute
 - **Response:** See [runbook](docs/runbook.md#alert-poddown)
 
-![Alert Rules](docs/screenshots/alert-rules.png)
+![Alert Rules](docs/screenshots/prometheus_alerts.png)
 
 Verify alerts are loaded:
 
