@@ -139,7 +139,7 @@ After applying the ServiceMonitor, Prometheus automatically discovers and scrape
 
 Navigate to **Status → Targets** and filter by `mini-api` to verify both pods show **UP**.
 
-![Prometheus Targets](docs/prometheustargets.png)
+![Prometheus Targets](docs/screenshots/prometheustargets.png)
 
 ---
 
@@ -153,7 +153,7 @@ The custom RED dashboard visualizes three core service health metrics:
 | Request Latency p99 (seconds) | `histogram_quantile(0.99, rate(http_request_duration_seconds_bucket{job="mini-api-svc"}[1m]))` | Worst-case response time |
 | Error Rate (4xx) | `rate(http_requests_total{job="mini-api-svc", status="4xx"}[1m])` | Failed request rate |
 
-![RED Dashboard](docs/RED_Dashboard.png)
+![RED Dashboard](docs/screenshots/RED_Dashboard.png)
 
 To import the dashboard: **Dashboards → Import → Upload JSON** → select `dashboards/mini-api-observability.json`
 
